@@ -1,0 +1,47 @@
+version: '3.4'
+services:
+  db:
+    image: mysql:5.7
+    # volumes:
+    #   - db_data:/var/lib/mysql
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: StratWars
+    
+  backend:
+    depends_on:
+      - db
+    image: stratwars/api
+    build: apps/backend
+    volumes:
+    - type: bind
+      source: ./apps/backend/StratWarsApi
+      target: /srv
+    ports:
+      - 80:80
+    restart: on-failure
+    environment:
+      DATABASE_URL: mysql://root:root@db:3306/StratWars
+
+  frontend:
+    image: stratwars/front
+    restart: on-failure
+    build: apps/frontend
+    command: ['sh', '-c', 'npm start']
+    depends_on:
+      - backend
+    volumes:
+    - type: bind
+      source: ./apps/frontend/StratWars
+      target: /srv
+    ports:
+      - 8080:1234
+      - 55555:55555
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+        - db
+    ports:
+        - 8081:80

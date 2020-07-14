@@ -1,0 +1,12 @@
+#!/bin/sh
+set -eux
+jwt_public_key="${JWT_PUBLIC_KEY=:-$(pwd)/.ssh/public.pem}"
+jwt_secret_key="${JWT_SECRET_KEY=:-$(pwd)/.ssh/private.pem}"
+if [ ! -f "$jwt_secret_key" ]
+then
+	mkdir -p $(pwd)/.ssh
+	echo "" | openssl genrsa -out "$jwt_secret_key" 4096
+	openssl rsa -in "$jwt_secret_key" -outform PEM -pubout -out "$jwt_public_key"
+else
+	echo "SSH key already exists"
+fi
