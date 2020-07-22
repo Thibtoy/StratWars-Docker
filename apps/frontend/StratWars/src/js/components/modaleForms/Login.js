@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setModale, addAxiosAuth } from '../store/app'
+import { setModale, addAxiosAuth } from '../../store/app'
 import styled from 'styled-components'
 //import { setStorageUser } from '../utils/local-storage'
 

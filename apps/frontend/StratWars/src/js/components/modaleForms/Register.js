@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import api, { addAuth } from '../utils/api'
-//import { setStorageUser } from '../utils/local-storage'
+import api, { addAuth } from '../../utils/api'
 
 const Register = (props) => {
 

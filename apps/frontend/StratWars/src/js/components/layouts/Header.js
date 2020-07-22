@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setModale } from '../store/app'
+import { setModale } from '../../store/app'
 
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import loggedOut from '../../images/loggedOut.svg'
-import loggedIn from '../../images/loggedIn.svg'
-import loggedOutShield from '../../images/loggedOutShield.svg'
-import loggedInShield from '../../images/loggedInShield.svg'
+import loggedOut from '../../../images/loggedOut.svg'
+import loggedIn from '../../../images/loggedIn.svg'
+import loggedOutShield from '../../../images/loggedOutShield.svg'
+import loggedInShield from '../../../images/loggedInShield.svg'
 
 const Header = (props) => {
 	const dispatch = useDispatch()
@@ -23,7 +23,11 @@ const Header = (props) => {
                 <ul>
                     <li>
                         <CustomLink activeStyle={{ color: 'red' }} exact to="/">Home</CustomLink>
+                    </li>
+                    <li>
                         <CustomLink activeStyle={{ color: 'red' }} to="/codex">Codex</CustomLink>
+                    </li>
+                    <li>
                         <CustomLink activeStyle={{ color: 'red' }} to="/armies">Armies</CustomLink>
                     </li>
                 </ul>

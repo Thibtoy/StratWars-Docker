@@ -22,19 +22,16 @@ class KindRepository extends ServiceEntityRepository
     // /**
     //  * @return Kind[] Returns an array of Kind objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function getAllKinds()
     {
         return $this->createQueryBuilder('k')
-            ->andWhere('k.exampleField = :val')
-            ->setParameter('val', $value)
             ->orderBy('k.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
+            ->getArrayResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Kind

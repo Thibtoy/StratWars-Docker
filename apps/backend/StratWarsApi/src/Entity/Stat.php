@@ -9,6 +9,20 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Stat
 {
+    const DATA_ORDER = [
+        'costPoints', 
+        'move', 
+        'life', 
+        'vision',
+        'physicalDefense', 
+        'distantDefense', 
+        'magicalDefense', 
+        'physicalDammages', 
+        'distantDammages', 
+        'magicalDammages', 
+        'grade'
+    ];
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setModale } from '../store/app'
 import styled from 'styled-components'
 
-import Login from './Login'
-import Register from './Register'
+import Login from './modaleForms/Login'
+import Register from './modaleForms/Register'
 
 const Modale = (props) => {
 	const dispatch = useDispatch()
