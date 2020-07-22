@@ -1,18 +1,18 @@
-import React, {useState} from 'react'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom"
-import { useSelector } from 'react-redux'
+import React from 'react'
+import styled from 'styled-components'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { setModaleShowing } from './store/app'
+import { useSelector } from 'react-redux'
 
+import Armies from './pages/Armies'
+import Codex from './pages/Codex'
 import Home from './pages/Home'
+
 import Header from './components/Header'
 import Modale from './components/Modale'
-import '../css/style.css'
+
 import img from '../images/background.jpg'
-import styled from 'styled-components'
+import '../css/style.css'
 
 
 const App = () => {
@@ -27,6 +27,12 @@ const App = () => {
 	                <Switch>
 	                    <Route exact path="/">
 	                        <Home />
+	                    </Route>
+	                    <Route path="/armies">
+	                        <Armies />
+	                    </Route>
+	                    <Route path="/codex">
+	                        <Codex />
 	                    </Route>
 	                </Switch>
 	            </div>

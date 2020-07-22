@@ -22,7 +22,9 @@ const Header = (props) => {
         	<Nav>
                 <ul>
                     <li>
-                        <CustomLink activeStyle={{ color: 'purple' }} to="/">Home</CustomLink>
+                        <CustomLink activeStyle={{ color: 'red' }} exact to="/">Home</CustomLink>
+                        <CustomLink activeStyle={{ color: 'red' }} to="/codex">Codex</CustomLink>
+                        <CustomLink activeStyle={{ color: 'red' }} to="/armies">Armies</CustomLink>
                     </li>
                 </ul>
             </Nav>

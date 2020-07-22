@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import api from '../utils/api'
 import styled from 'styled-components'
 
-const Home = (props) => {
+const Codex = (props) => {
     return (
         <Body>
-            <h1>coucou</h1>
+            <h1>codex</h1>
         </Body>
     )
 }
@@ -18,4 +18,4 @@ const Body = styled.div`
 	box-sizing: border-box;
 `
 
-export default Home;
+export default Codex

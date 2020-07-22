@@ -39,7 +39,7 @@ class SecurityController extends AbstractController
      */
     public function login(): JsonResponse
     {
-        return new JsonResponse();
+        return new JsonResponse('');
     }
 
     /**
