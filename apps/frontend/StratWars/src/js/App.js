@@ -31,9 +31,7 @@ const App = () => {
 	                    <Route path="/armies">
 	                        <Armies />
 	                    </Route>
-	                    <Route path="/codex">
-	                        <Codex />
-	                    </Route>
+	                    <Route path="/codex/:slug?" component={ Codex } />
 	                </Switch>
 	            </div>
             </AppBody>
