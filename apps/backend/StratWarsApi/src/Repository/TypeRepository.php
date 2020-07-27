@@ -22,19 +22,18 @@ class TypeRepository extends ServiceEntityRepository
     // /**
     //  * @return Type[] Returns an array of Type objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findAllTypes()
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
+            ->select('t.name, s.id as statId')
+            ->leftJoin('t.stat', 's')
             ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Type

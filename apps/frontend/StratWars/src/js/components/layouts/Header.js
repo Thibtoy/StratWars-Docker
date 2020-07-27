@@ -45,7 +45,7 @@ const AppHeader = styled.header`
 	width: 100%;
 	height: 60px;
 	background-color: rgba(255, 255, 255, 0.65);
-	position: fixed;
+	position: sticky;
 	top: 0px;
 	border-bottom: 1.25px solid rgba(0, 0, 0, 0.3);
 	display: flex;

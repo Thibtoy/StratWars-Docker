@@ -66,17 +66,17 @@ class Stat
     private $magicalDammages;
 
     /**
-     * @ORM\Column(type="decimal", precision=4, scale=2)
+     * @ORM\Column(type="decimal", precision=2, scale=2)
      */
     private $physicalDefense;
 
     /**
-     * @ORM\Column(type="decimal", precision=4, scale=2)
+     * @ORM\Column(type="decimal", precision=2, scale=2)
      */
     private $distantDefense;
 
     /**
-     * @ORM\Column(type="decimal", precision=4, scale=2)
+     * @ORM\Column(type="decimal", precision=2, scale=2)
      */
     private $magicalDefense;
 

@@ -19,7 +19,6 @@ export const {
 		init: state => state,
 		addAxiosAuth: (state, token = null) => {
 			state.axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`
-
 			return state
 		}
 	},

@@ -26,9 +26,11 @@ class KindRepository extends ServiceEntityRepository
     public function getAllKinds()
     {
         return $this->createQueryBuilder('k')
+            ->select('k.name, k.description, s.id as statId')
+            ->leftJoin('k.stat', 's')
             ->orderBy('k.id', 'ASC')
             ->getQuery()
-            ->getArrayResult()
+            ->getResult()
         ;
     }
     

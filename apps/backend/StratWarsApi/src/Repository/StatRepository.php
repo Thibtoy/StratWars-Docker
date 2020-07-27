@@ -26,10 +26,11 @@ class StatRepository extends ServiceEntityRepository
     public function findStatById($id)
     {
         return $this->createQueryBuilder('s')
+            ->select('s.costPoints, s.move, s.life, s.vision, s.physicalDammages, s.distantDammages, s.magicalDammages, s.physicalDefense, s.distantDefense, s.magicalDefense, s.grade')
             ->where('s.id = :id')
             ->setParameter('id', $id)
             ->getQuery()
-            ->getArrayResult()[0]
+            ->getResult()[0]
         ;
     }
     
