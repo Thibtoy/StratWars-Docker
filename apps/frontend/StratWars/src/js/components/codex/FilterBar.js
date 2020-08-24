@@ -16,19 +16,6 @@ const FilterBar = (props) => {
   const [body, setBody] = useState(new Object())
   const [searchKeywords, setSearchKeywords] = useState('')
 
-  useEffect(() => {
-    if (!kinds) {
-      api.get('api/kinds')
-        .then(response => dispatch(setKinds(response.data)))
-        .catch(error => { throw error })
-    }
-    if (!types) {
-      api.get("api/types")
-        .then(response => dispatch(setTypes(response.data)))
-        .catch(error => { throw error })
-    }
-  }, [])
-
   const onChange = event => {
     let value = event.target.value 
 
@@ -109,6 +96,19 @@ const FilterBar = (props) => {
 
     return (keywords.match(','))? keywords.split(',') : keywords.split(' ')
   }
+
+  useEffect(() => {
+    if (!kinds) {
+      api.get('api/kinds')
+        .then(response => dispatch(setKinds(response.data)))
+        .catch(error => { throw error })
+    }
+    if (!types) {
+      api.get("api/types")
+        .then(response => dispatch(setTypes(response.data)))
+        .catch(error => { throw error })
+    }
+  }, [])
 
   return (
     <FilterBarDiv>
