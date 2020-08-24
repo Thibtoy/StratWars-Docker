@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -8,13 +8,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Stat;
 use App\Entity\Type;
 
-/**
- * @Route("/api")
- */
 class TypeController extends AbstractController
 {
     /**
-     * @Route("/types", name="api_types")
+     * @Route("/types", name="types")
      */
     public function index()
     {
@@ -30,7 +27,7 @@ class TypeController extends AbstractController
     }
 
     /**
-     * @Route("/type/{name}", name="api_type")
+     * @Route("/type/{name}", name="type")
      */
     public function show(Type $type)
     {

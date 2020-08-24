@@ -1,6 +1,9 @@
 controllers:
-    resource: ../../src/Controller/
+    resource: ../../src/Controller/Api
     type: annotation
+    prefix: /api
+    name_prefix: api_
+    trailing_slash_on_root: false
 
 kernel:
     resource: ../../src/Kernel.php

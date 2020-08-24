@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setModale } from '../../store/app'
+import { setModale } from '../store/app'
 
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import loggedOut from '../../../images/loggedOut.svg'
-import loggedIn from '../../../images/loggedIn.svg'
-import loggedOutShield from '../../../images/loggedOutShield.svg'
-import loggedInShield from '../../../images/loggedInShield.svg'
+import loggedOut from '../../images/loggedOut.svg'
+import loggedIn from '../../images/loggedIn.svg'
+import loggedOutShield from '../../images/loggedOutShield.svg'
+import loggedInShield from '../../images/loggedInShield.svg'
 
 const Header = (props) => {
 	const dispatch = useDispatch()
@@ -22,10 +22,10 @@ const Header = (props) => {
         	<Nav>
                 <ul>
                     <li>
-                        <CustomLink activeStyle={{ color: 'red' }} exact to="/">Home</CustomLink>
+                        <CustomLink activeStyle={{ color: 'red' }} to="/codex">Codex</CustomLink>
                     </li>
                     <li>
-                        <CustomLink activeStyle={{ color: 'red' }} to="/codex">Codex</CustomLink>
+                        <CustomLink activeStyle={{ color: 'red' }} exact to="/">Home</CustomLink>
                     </li>
                     <li>
                         <CustomLink activeStyle={{ color: 'red' }} to="/armies">Armies</CustomLink>
@@ -61,11 +61,12 @@ const AppHeader = styled.header`
 
 const Nav = styled.nav`
 	width: 100%;
+	max-width: 1200px;
 
 	ul {
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-evenly;
 
 		li {
 			display: block;
@@ -98,5 +99,7 @@ const LogBtn = styled.div`
 `
 
 const CustomLink = styled(NavLink)`
-
+	text-decoration: none;
+	color: black;
+	font-size: 18px;
 `

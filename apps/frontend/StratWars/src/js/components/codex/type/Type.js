@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getType, getTypeName, setType } from '../../../store/codex'
 
+import Units from '../unit/Units'
+
 import styled from 'styled-components'
 
 const Type = (props) => {
@@ -23,7 +25,7 @@ const Type = (props) => {
 			{ type && 
 				<div className="Wrapper">		
 					<h4>{ type.name }</h4>
-					<p>{/* type.description */}</p>
+					<Units/>
 				</div>
 			}
 		</Body>

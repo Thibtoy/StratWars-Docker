@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -8,13 +8,10 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Kind;
 use App\Entity\Stat;
 
-/**
- * @Route("/api")
- */
 class KindController extends AbstractController
 {
     /**
-     * @Route("/kinds", name="api_kinds")
+     * @Route("/kinds", name="kinds")
      */
     public function index()
     {
@@ -31,7 +28,7 @@ class KindController extends AbstractController
     }
 
      /**
-     * @Route("/kind/{name}", name="api_kind")
+     * @Route("/kind/{name}", name="kind")
      */
     public function show(Kind $kind)
     {

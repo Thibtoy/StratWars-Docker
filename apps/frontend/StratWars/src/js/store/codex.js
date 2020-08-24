@@ -8,6 +8,7 @@ export const {
 		setKinds,
 		setType,
 		setTypes,
+		setUnits,
 		setUrlParams,
 		addUnitData,
 	},
@@ -56,6 +57,17 @@ export const {
 
 			return state
 		},
+		setUnits: (state, units = false) => {
+			if (units) {
+				if (!state.units) state.units = new Object()
+				if (!state.units[state.kindName]) state.units[state.kindName] = new Object()
+				if (!state.units[state.kindName][state.typeName]) state.units[state.kindName][state.typeName] = new Object()
+				units.forEach(unit => state.units[state.kindName][state.typeName][unit.name] = unit)
+			}
+			else state.units = false
+
+			return state
+		},
 		setUrlParams: (state, { kindName, typeName }) => {
 			state.kindName = kindName
 			state.typeName = typeName
@@ -65,7 +77,12 @@ export const {
 	},
 	selectors: {
 		getKind: (slice) => slice.kinds && slice.kinds[slice.kindName]? slice.kinds[slice.kindName] : false,
-		getType: (slice) => slice.types && slice.types[slice.typeName]? slice.types[slice.typeName] : false
+		getType: (slice) => slice.types && slice.types[slice.typeName]? slice.types[slice.typeName] : false,
+		getUnits: (slice) => {
+			if(slice.units && slice.units[slice.kindName] && slice.units[slice.kindName][slice.typeName])
+				return slice.units[slice.kindName][slice.typeName]
+			else return false
+		},
 	},
 	initial: {
 		kindName: false,

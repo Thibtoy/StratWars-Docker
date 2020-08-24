@@ -21,18 +21,18 @@ security:
             security: false
 
         login:
-            pattern: ^/api/login
+            pattern: ^/%api_path%/login
             stateless: true
             anonymous: true
             json_login:
-                check_path: /api/login
+                check_path: /%api_path%/login
                 provider: app_user_provider
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
 
         api:
-            pattern: ^/api
+            pattern: ^/%api_path%/
             anonymous: lazy
             provider: token_user_provider
             guard:
@@ -56,6 +56,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api, roles: ROLE_USER }
+        - { path: ^/%api_path%/army, roles: ROLE_USER }
+        - { path: ^/%api_path%/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
         # - { path: ^/profile, roles: ROLE_USER }

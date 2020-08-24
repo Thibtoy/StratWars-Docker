@@ -8,7 +8,7 @@ import Armies from './pages/Armies'
 import Codex from './pages/Codex'
 import Home from './pages/Home'
 
-import Header from './components/layouts/Header'
+import Header from './components/Header'
 import Modale from './components/Modale'
 
 import img from '../images/background.jpg'

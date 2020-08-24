@@ -1,8 +1,8 @@
-it-hot: down build up
+it-hot: it-stop build up
 
 it-please: prepare-db load-fixtures
 
-down: 
+it-stop: 
 	docker-compose down
 
 build: 

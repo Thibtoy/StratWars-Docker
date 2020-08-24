@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +19,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/api/admin", name="test")
+     * @Route("/admin", name="test")
      */
     public function test(): JsonResponse
     {

@@ -84,6 +84,24 @@ class Unit
         return $this->stat;
     }
 
+    public function getRealStat(): array
+    {
+        $stat = $this->getStat();
+        $kindStat = $this->getKind()->getStat();
+        $typeStat = $this->getType()->getStat();
+
+        $methods = get_class_methods($stat);
+
+        $realStat = [];
+
+        foreach ($methods as $value) {
+            if (preg_match('/^get/', $value) && "getId" !== $value)
+                $realStat[lcfirst(preg_replace('/^get/', "", $value))] = $stat->$value()+$kindStat->$value()+$typeStat->$value();
+        }
+
+        return $realStat;
+    }
+
     public function setStat(Stat $stat): self
     {
         $this->stat = $stat;

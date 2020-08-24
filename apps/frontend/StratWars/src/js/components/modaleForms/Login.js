@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setModale, addAxiosAuth } from '../../store/app'
+import { setLogged } from '../../store/me'
 import styled from 'styled-components'
 //import { setStorageUser } from '../utils/local-storage'
 
@@ -23,7 +24,10 @@ const Login = (props) => {
 
         api
             .post('api/login', { username: email, password }, { withCredentials: true })
-            .then(response => dispatch(addAxiosAuth(response.data.token)))
+            .then(response => {
+                dispatch(addAxiosAuth(response.data.token))
+                dispatch(setLogged(true))
+            })
             .catch(error => { throw error })
             .finally(() => {
                 setIsLoading(false)
