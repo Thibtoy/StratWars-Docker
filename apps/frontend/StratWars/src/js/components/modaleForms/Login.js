@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setModale, addAxiosAuth } from '../../store/app'
 import { setLogged } from '../../store/me'
 import styled from 'styled-components'
-//import { setStorageUser } from '../utils/local-storage'
+
+import Button from '../Button.js'
 
 const Login = (props) => {
     const dispatch = useDispatch()
@@ -49,9 +50,10 @@ const Login = (props) => {
                         <input onChange={ event => setPassword(event.target.value) } type="password" required />
                     </div>
                     <br />
-                    <Button type="submit">Sign In</Button>
-                    <p>Not member yet? <span onClick={ displayRegisterModale }>Sign Up</span></p>
-                    <p>Forgoted password? <a href='#'>Click Here</a></p>
+                    <p className="text">Forgoted password? <a href='#'>Click Here</a></p>
+                    <Button type="submit" value="Sign In" colored={ true } size="small" />
+                    <p className="text">Not member yet?</p>
+                    <Button value="Sign Up" onClick={ displayRegisterModale } size="small" />
                     { message && <span>{ message }</span> }
                 </form>
             }
@@ -72,7 +74,7 @@ const LoginBox = styled.div`
 
 		div {
 			width: 100%;
-			margin-top: 10px;
+			margin-top: 12px;
 			display: flex;
 			justify-content: space-between;
 
@@ -82,31 +84,10 @@ const LoginBox = styled.div`
 			}
 		}
 
-		p {
-			margin-top: 12px;
-			font-size: 14px;
+		.text {
+			margin: 6px 0;
+			font-size: 15px;
 		}
 	}
 `
-
-const Button = styled.button`
-	padding: 7.5px 15px;
-	background-color: rgb(0, 245, 0);
-	border-radius: 5px;
-	border-style: none;
-	border 1px solid grey;
-	box-sizing: border-box;
-	font-size: 15.5px;
-	outline: none;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-
-	:active {
-		box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.5) inset;
-		transform: scale(0.98);
-	}
-`
-
 export default Login;

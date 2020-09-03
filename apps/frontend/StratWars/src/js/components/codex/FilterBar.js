@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { setKinds, getKinds } from '../../store/codex'
-import { setTypes, getTypes } from '../../store/codex'
+import { setBody, setKinds, setTypes, getBody, getKinds, getTypes } from '../../store/codex'
+
+import SelectOptions from '../form/SelectOptions'
 
 const FilterBar = (props) => {
   const dispatch = useDispatch()
   const api = useSelector(state => state.app.axiosInstance)
 
+  const body = useSelector(getBody)
   const kinds = useSelector(getKinds)
   const types = useSelector(getTypes)
 
   const [tags, setTags] = useState(false)
-  const [body, setBody] = useState(new Object())
   const [searchKeywords, setSearchKeywords] = useState('')
 
   const onChange = event => {
@@ -23,23 +24,20 @@ const FilterBar = (props) => {
     else if (undefined != body.keywords) delete body.keywords
 
     setSearchKeywords(body.keywords? body.keywords : '')
-    setBody(body)
+    dispatch(setBody(body))
     refreshTags()
   }
 
-  const onSelectChange = event => {
-    let filter = event.target.getAttribute('filter'),
-        value = event.target.value
-
+  const selectCallback = (value, filter, resolve) => {
     if (!body[filter]) body[filter] = new Object()
 
     if (1 == value) body[filter] = new Object()
     else if (body[filter][value]) delete body[filter][value]
     else body[filter][value] = true
 
-    event.target.value = '0'
-    setBody(body)
+    dispatch(setBody(body))
     refreshTags()
+    resolve()
   }
 
   const removeFilter = event => {
@@ -54,7 +52,7 @@ const FilterBar = (props) => {
     }
     else delete body[filter][value]
 
-    setBody(body)
+    dispatch(setBody(body))
     refreshTags()
   }
 
@@ -116,22 +114,8 @@ const FilterBar = (props) => {
       <p className="description">Welcome in our codex section, where you can learn more about our game, search different units with thoses filters or navigate through the codex with the differents sections below.</p>
       <ResearchBar type="text" onChange={ onChange } value={ searchKeywords } placeholder={ 'Filter units by keywords' }/>
       <SelectBar>
-        <SelectFilter filter="kinds" onChange={ onSelectChange }>
-          <option value={ 0 } defaultValue style={ { display: "none" } }>Kinds</option>
-          <option value={ 1 }>None</option>
-          {kinds && ((kindOptions = []) => {
-            for (let key in kinds) kindOptions.push(<option key={ key } value={ key }>{ key }</option>)
-            return kindOptions
-          })()}
-        </SelectFilter>
-        <SelectFilter filter="types" onChange={ onSelectChange }>
-          <option value={ 0 } defaultValue style={ { display: "none" } }>Types</option>
-          <option value={ 1 }>None</option>
-          {types && ((typeOptions = []) => {
-            for (let key in types) typeOptions.push(<option key={ key } value={ key }>{ key }</option>)
-            return typeOptions
-          })()}
-        </SelectFilter>
+        { kinds && <SelectOptions filter="kinds" name="Kinds" options={ kinds } callback={ selectCallback }/> }
+        { types && <SelectOptions filter="types" name="Types" options={ types } callback={ selectCallback }/> }
         <div className="reset">
           <div>
             Reset

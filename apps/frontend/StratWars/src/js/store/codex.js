@@ -4,6 +4,7 @@ export const {
 	reducer,
 	initial,
 	actions: {
+		setBody,
 		setKind,
 		setKinds,
 		setType,
@@ -13,6 +14,7 @@ export const {
 		addUnitData,
 	},
 	selectors: {
+		getBody,
 		getKind,
 		getKindName,
 		getKinds,
@@ -85,6 +87,7 @@ export const {
 		},
 	},
 	initial: {
+		body: new Object(),
 		kindName: false,
 		typeName: false,
 		kinds: false,

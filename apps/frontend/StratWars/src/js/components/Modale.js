@@ -46,7 +46,7 @@ const ModaleBox = styled.div`
 	border: 1.25px solid rgba(0, 0, 0, 0.3);
 	border-radius: 5px;
 	box-sizing: border-box;
-	padding: calc(100vh/25) calc(100vw/35);
+	padding: 30px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -60,7 +60,7 @@ const ModaleContent = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 20px;
+	margin-top: 10px;
 	flex-grow: 2;
 `
 
