@@ -6,7 +6,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ApiCsrfValidationSubscriber implements EventSubscriberInterface
+class ApiContentTypeValidationSubscriber implements EventSubscriberInterface
 {
     public function onKernelRequest(RequestEvent $event)
     {
@@ -19,7 +19,9 @@ class ApiCsrfValidationSubscriber implements EventSubscriberInterface
 
         //var_dump($request->headers->get('Content-Type'));
 
-        if ($request->headers->get('Content-Type') != 'application/json') {
+        $contentTypes = explode(';', $request->headers->get('Content-Type'));
+
+        if (!in_array('application/json', $contentTypes) ) {
             $response = new JsonResponse([
                 'message' => 'Invalid Content-Type'
             ], 415);

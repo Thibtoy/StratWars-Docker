@@ -45,6 +45,11 @@ class User implements UserInterface
      */
     private $apiToken;
 
+    /**
+     * @ORM\Column(type="string", length=100, unique=true)
+     */
+    private $username;
+
     public function __construct()
     {
         $this->armies = new ArrayCollection();
@@ -167,6 +172,13 @@ class User implements UserInterface
     public function setApiToken(?string $apiToken): self
     {
         $this->apiToken = $apiToken;
+
+        return $this;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
 
         return $this;
     }

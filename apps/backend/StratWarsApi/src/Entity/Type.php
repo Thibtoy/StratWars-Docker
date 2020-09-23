@@ -33,6 +33,11 @@ class Type
      */
     private $units;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
     public function __construct()
     {
         $this->units = new ArrayCollection();
@@ -94,6 +99,18 @@ class Type
                 $unit->setType(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

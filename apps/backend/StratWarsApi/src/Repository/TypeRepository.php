@@ -26,7 +26,7 @@ class TypeRepository extends ServiceEntityRepository
     public function findAllTypes()
     {
         return $this->createQueryBuilder('t')
-            ->select('t.name, s.id as statId')
+            ->select('t.name, t.description, s.id as statId')
             ->leftJoin('t.stat', 's')
             ->orderBy('t.id', 'ASC')
             ->getQuery()

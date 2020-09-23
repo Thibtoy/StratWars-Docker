@@ -13,7 +13,7 @@ const SelectOptions = (props) => {
         value = target.value
 
     if (props.callback) {
-      new Promise((resolve, reject) => props.callback(filter, value, resolve))
+      new Promise((resolve, reject) => props.callback(value, filter, resolve))
         .then(() => {
           target.value = '0'
         })
@@ -38,9 +38,17 @@ const SelectOptions = (props) => {
 
 const SelectFilter = styled.select`
   height: 30px;
-  width: 220px;
+  width: 50%;
+  max-width: 220px;
   flex-shrink: 0;
-  margin-right: 20px;
+  margin-bottom: 10px;
+  z-index: 1;
+
+  @media(min-width: 565px) {
+    width: 35%;
+    margin-bottom: 0px;
+    margin-right: 20px;
+  }
 `
 
 export default SelectOptions

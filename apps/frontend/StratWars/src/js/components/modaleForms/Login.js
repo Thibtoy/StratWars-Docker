@@ -18,7 +18,10 @@ const Login = (props) => {
     const displayRegisterModale = () => dispatch(setModale({ type: 'register', title: 'Register' }))
 
     const handleSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault()
+
+        if (isLoading) return
+
 
         setMessage(null)
         setIsLoading(true)
@@ -28,35 +31,34 @@ const Login = (props) => {
             .then(response => {
                 dispatch(addAxiosAuth(response.data.token))
                 dispatch(setLogged(true))
-            })
-            .catch(error => { throw error })
-            .finally(() => {
-                setIsLoading(false)
                 dispatch(setModale(false))
+            })
+            .catch(error => {
+                setIsLoading(false)
+                setPassword('')
+                setMessage('Incorrect password or username')
             })
     }
 
     return (
         <LoginBox>
-            { isLoading
-                ? <span>is loading</span>
-                : <form onSubmit={ handleSubmit }>
-                    <div className="">
-                        <label>Email :</label>
-                        <input onChange={ event => setEmail(event.target.value) } type="email" name='email' required />
-                    </div>
-                    <div className="">
-                        <label>Password :</label>
-                        <input onChange={ event => setPassword(event.target.value) } type="password" required />
-                    </div>
-                    <br />
-                    <p className="text">Forgoted password? <a href='#'>Click Here</a></p>
-                    <Button type="submit" value="Sign In" colored={ true } size="small" />
-                    <p className="text">Not member yet?</p>
-                    <Button value="Sign Up" onClick={ displayRegisterModale } size="small" />
-                    { message && <span>{ message }</span> }
-                </form>
-            }
+            <form onSubmit={ handleSubmit }>
+                <div className="">
+                    <label>Email :</label>
+                    <input onChange={ event => setEmail(event.target.value) } type="email" name='email' required />
+                </div>
+                <div className="">
+                    <label>Password :</label>
+                    <input onChange={ event => setPassword(event.target.value) } type="password" required />
+                </div>
+                { message && <span style={ { color: 'red' } } >{ message }</span> }
+                { isLoading && <span>is loading</span> }
+                <br />
+                <p className="text">Forgoted password? <a href='#'>Click Here</a></p>
+                <Button type="submit" value="Sign In" colored={ true } size="small" />
+                <p className="text">Not member yet?</p>
+                <Button value="Sign Up" onClick={ displayRegisterModale } size="small" />
+            </form>
         </LoginBox>
     )
 }

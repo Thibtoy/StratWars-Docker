@@ -32,7 +32,7 @@ class JWTAuthenticationSuccessListener
 
 	    $domain = $request->server->get('SERVER_NAME');
         $secure = ($request->server->get('REQUEST_SCHEME') === 'https')? true : false; 
-		$cookie = new Cookie('token', $data['token'], strtotime('now + 1 year'), '/', $domain, $secure, false, true);
+		$cookie = new Cookie('token', $data['token'], strtotime('now + 30 day'), '/', $domain, $secure, true, true, 'lax');
 
 	    $response->headers->setCookie($cookie);
 	}

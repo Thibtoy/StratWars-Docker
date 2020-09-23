@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { setModaleShowing } from './store/app'
 import { useSelector } from 'react-redux'
 
-import Armies from './pages/Armies'
-import Codex from './pages/Codex'
+import Armies from './pages/Armies/Armies'
+import Codex from './pages/Codex/Codex'
 import Home from './pages/Home'
+import Page404 from './pages/Page404'
 
 import Header from './components/Header'
 import Modale from './components/Modale'
@@ -23,17 +24,12 @@ const App = () => {
         	<AppBody>
         		{ false != modale && <Modale/> }
 	            <Header/>
-	            <div>
-	                <Switch>
-	                    <Route exact path="/">
-	                        <Home />
-	                    </Route>
-	                    <Route path="/armies">
-	                        <Armies />
-	                    </Route>
-	                    <Route path="/codex/:kindName?/:typeName?" component={ Codex } />
-	                </Switch>
-	            </div>
+                <Switch>
+                    <Route exact path="/" component={ Home } />
+                    <Route path="/armies" component={ Armies } />
+                    <Route exact path="/codex" component={ Codex } />
+                    <Route path="*" component={ Page404 } />
+                </Switch>
             </AppBody>
         </Router>
     )

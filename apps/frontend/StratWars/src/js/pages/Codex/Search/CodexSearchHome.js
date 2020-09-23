@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Route } from "react-router-dom"
 import styled from 'styled-components'
-import { getKindName, getTypeName, setUrlParams } from '../store/codex'
 
-import FilterBar from '../components/codex/FilterBar'
-import Kind from '../components/codex/kind/Kind'
-import Type from '../components/codex/type/Type'
+import Rules from '../../../components/codex/Rules'
+import KindsAndTypesGallery from '../../../components/codex/KindsAndTypesGallery'
 
-
-const Codex = (props) => {
+export default ({ match }) => {
   const dispatch = useDispatch()
   // const kindName = useSelector(getKindName)
   // const typeName = useSelector(getTypeName)
@@ -23,9 +21,8 @@ const Codex = (props) => {
 
   return (
     <React.Fragment>
-      <FilterBar/>
+      <Rules />
+      <KindsAndTypesGallery />
     </React.Fragment>
   )
 }
-
-export default Codex

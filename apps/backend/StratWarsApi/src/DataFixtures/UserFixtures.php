@@ -19,6 +19,7 @@ class UserFixtures extends Fixture
     {
         $user = new User();
         $user->setEmail('test@test.com')
+        	->setUsername('Robert')
         	->setPassword($this->passwordEncoder->encodePassword(
 	            $user,
 	            'coucou'

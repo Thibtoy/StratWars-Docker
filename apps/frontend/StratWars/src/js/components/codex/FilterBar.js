@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { setBody, setKinds, setTypes, getBody, getKinds, getTypes } from '../../store/codex'
 
 import SelectOptions from '../form/SelectOptions'
+import Button from '../Button.js'
 
 const FilterBar = (props) => {
   const dispatch = useDispatch()
@@ -48,9 +49,13 @@ const FilterBar = (props) => {
       let regExp = new RegExp(`, ${value}` + '|' + `${value}, ` + '|' + `${value}`)
 
       body.keywords = getKeywords(body.keywords).join(', ').replace(regExp, '')
+      if (body.keywords.length === 0) delete body.keywords
       setSearchKeywords(body.keywords)
     }
-    else delete body[filter][value]
+    else {
+      delete body[filter][value]
+      if (Object.keys(body[filter].length === 0)) delete body[filter]
+    }
 
     dispatch(setBody(body))
     refreshTags()
@@ -114,12 +119,19 @@ const FilterBar = (props) => {
       <p className="description">Welcome in our codex section, where you can learn more about our game, search different units with thoses filters or navigate through the codex with the differents sections below.</p>
       <ResearchBar type="text" onChange={ onChange } value={ searchKeywords } placeholder={ 'Filter units by keywords' }/>
       <SelectBar>
-        { kinds && <SelectOptions filter="kinds" name="Kinds" options={ kinds } callback={ selectCallback }/> }
-        { types && <SelectOptions filter="types" name="Types" options={ types } callback={ selectCallback }/> }
+        {
+          kinds ?
+            <SelectOptions filter="kinds" name="Kinds" options={ kinds } callback={ selectCallback } />
+          : <SelectOptions filter="kinds" name="Kinds" options={ new Object() } callback={ selectCallback } />
+        }
+        {
+          types ?
+            <SelectOptions filter="types" name="Types" options={ types } callback={ selectCallback } />
+          : <SelectOptions filter="types" name="Types" options={ new Object() } callback={ selectCallback } />
+        }
+        
         <div className="reset">
-          <div>
-            Reset
-          </div>
+          <Button value="Reset" colored={ true } size="small" />
         </div>
       </SelectBar>
       <TagSection>
@@ -130,9 +142,8 @@ const FilterBar = (props) => {
 }
 
 const FilterBarDiv = styled.div`
-  width: 80%;
+  width: 90%;
   max-width: 1200px;
-  min-height: 250px;
   margin: auto;
   margin-top: 20px;
   box-sizing: border-box;
@@ -143,7 +154,12 @@ const FilterBarDiv = styled.div`
   background-color: rgba(255, 255, 255, 0.65);
 
   .title {
-    margin: 10px 0;
+    display: none;
+
+    @media(min-width: 568px) {
+      display: block;
+      margin: 10px 0;
+    }
   }
 
   .description {
@@ -163,14 +179,25 @@ const ResearchBar = styled.input`
 const SelectBar = styled.div`
   width: 90%; 
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin: 10px 0;
 
   .reset {
+    z-index: 0;
     width: 100%; 
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-top: -45px;
+  }
+
+  @media(min-width: 565px) {
+    flex-direction: row;
+    align-items: center;
+
+    .reset {
+      margin-top: 0px;
+    }
   }
 `
 
